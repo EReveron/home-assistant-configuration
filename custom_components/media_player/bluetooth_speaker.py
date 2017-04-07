@@ -17,7 +17,11 @@ import subprocess
 import logging
 
 DEFAULT_NAME = 'Bluetooth Speaker'
-SCRIPT_DIR = '/volume1/@appstore/HomeAssistant/config/programs/' 
+
+# This is the path where the script is located
+SCRIPT_DIR = '/volume1/@appstore/HomeAssistant/config/programs/'
+
+# This is the name of the script
 SCRIPT_NAME = SCRIPT_DIR + 'play_url_bluetooth.sh' 
 
 SUPPORT_BLU_SPEAKER = SUPPORT_PLAY_MEDIA 
