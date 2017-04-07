@@ -3,7 +3,7 @@ sequence:
 
   - alias: Make Program Announcement
     service: tts.google_say
-    entity_id: media_player.espeak
+    entity_id: media_player.bluetooth_speaker
     data_template: 
       message: " Now watching on DirecTV: {{ states.media_player.directv_receiver.attributes.media_title }} , {{ states.media_player.directv_receiver.attributes.media_series_title }} "
       language: 'en'
