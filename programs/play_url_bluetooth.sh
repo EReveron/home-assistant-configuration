@@ -3,7 +3,11 @@
 #                        thought a Bluetooth Speaker
 play() { 
    MPLAYER=/var/packages/AudioStation/target/bin/mplayer
-   DEVICE_BLU=bluez_sink.00_21_3C_6D_37_01
+   
+   # You must include your device ID, as an example this is my device ID ...   DEVICE_BLU=bluez_sink.00_21_3C_6D_37_01
+   DEVICE_BLU=YOUR_DEVICE_ID
+   
+   # This must include the ADMIN password, this is in order that sudo will work
    ADM_PASSWD=YOUR_ADMIN_PASSWD
 
    wget -q --no-check-certificate $1 -O /tmp/test.mp3
