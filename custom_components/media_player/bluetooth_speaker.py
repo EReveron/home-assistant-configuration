@@ -1,5 +1,5 @@
 """
-Support for TTS Espeak
+Support for TTS on a Bluetooth Speaker
 
 """
 import voluptuous as vol
@@ -16,11 +16,11 @@ import subprocess
 
 import logging
 
-DEFAULT_NAME = 'Espeak'
+DEFAULT_NAME = 'Bluetooth Speaker'
 SCRIPT_DIR = '/volume1/@appstore/HomeAssistant/config/programs/' 
-SCRIPT_NAME = SCRIPT_DIR + 'play_bluetooth.sh' 
+SCRIPT_NAME = SCRIPT_DIR + 'play_url_bluetooth.sh' 
 
-SUPPORT_ESPEAK = SUPPORT_PLAY_MEDIA 
+SUPPORT_BLU_SPEAKER = SUPPORT_PLAY_MEDIA 
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
@@ -30,15 +30,14 @@ _LOGGER = logging.getLogger(__name__)
 
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
-    """Setup the Espeak platform."""
+    """Setup the Bluetooth Speaker platform."""
     name = config.get(CONF_NAME)
 
-    _LOGGER.info('Name of the device:%s',name)
-    add_devices([EspeakDevice(name)])
+    add_devices([BluetoothSpeakerDevice(name)])
     return True
 
-class EspeakDevice(MediaPlayerDevice):
-    """Representation of a Espeak reciever on the network."""
+class BluetoothSpeakerDevice(MediaPlayerDevice):
+    """Representation of a Bluetooth Speaker on the network."""
 
     def __init__(self, name):
         """Initialize the device."""
@@ -70,7 +69,7 @@ class EspeakDevice(MediaPlayerDevice):
     @property
     def supported_features(self):
         """Flag media player features that are supported."""
-        return SUPPORT_ESPEAK
+        return SUPPORT_BLU_SPEAKER
 
     def play_media(self, media_type, media_id, **kwargs):
         """Send play commmand."""
