@@ -1,0 +1,13 @@
+alias: 'AUTOMATION - DirecTV Program Changed'
+hide_entity: true
+trigger:      
+  platform: state
+  entity_id: media_player.directv_receiver
+  to: 'playing'
+condition:
+  - condition: time
+    after: '06:00'
+    before: '21:00'
+action:
+  service: script.turn_on
+  entity_id: script.directv_program

@@ -1,0 +1,22 @@
+alias: SCRIPT - Directv Program Announcement
+sequence:
+
+  - alias: Make Program Announcement
+    service: tts.google_say
+    entity_id: media_player.espeak
+    data_template: 
+      message: " Now watching on DirecTV: {{ states.media_player.directv_receiver.attributes.media_title }} , {{ states.media_player.directv_receiver.attributes.media_series_title }} "
+      language: 'en'
+
+  - alias: Log Event
+    service: logbook.log
+    data:
+      name: "DirecTV New Program:"
+      message:  ' {{ states.media_player.directv_receiver.attributes.media_channel }} : {{ states.media_player.directv_receiver.attributes.media_title }} , {{ states.media_player.directv_receiver.attributes.media_series_title }} '
+
+  - alias: Create a Persistent Notification
+    service: persistent_notification.create
+    data:
+      message: ' {{ states.media_player.directv_receiver.attributes.media_channel }} : {{ states.media_player.directv_receiver.attributes.media_title }} , {{ states.media_player.directv_receiver.attributes.media_series_title }} '
+      title: ' Now Watching on DirecTV '
+      notification_id: directv_watching
